@@ -1,11 +1,11 @@
 import React from 'react';
-import Createtask from './components/Createtask';
+import Localtask from './components/Localtask';
 import './App.css';
 
 function App() {
   return (
     <div className="App app-container">
-      <Createtask/>
+      <Localtask/>
     </div>
   );
 }

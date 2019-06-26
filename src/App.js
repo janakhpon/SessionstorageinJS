@@ -5,6 +5,7 @@ import Landing from './components/Landing';
 import Sessiontask from './components/Sessiontask';
 import Localtask from './components/Localtask';
 import SessionObj from './components/SessionObj';
+import LocalObj from "./components/LocalObj";
 import './App.css';
 
 function App() {
@@ -12,10 +13,11 @@ function App() {
     <Router>
       <div className="app-container">
         <NavbarCon />
-        <Route exact path='/' component={Landing} />
-        <Route exact path='/session' component={Sessiontask} />
-        <Route exact path='/local' component={Localtask} />
-        <Route exact path='/sessionobj' component={SessionObj} />
+        <Route exact path="/" component={Landing} />
+        <Route exact path="/session" component={Sessiontask} />
+        <Route exact path="/local" component={Localtask} />
+        <Route exact path="/sessionobj" component={SessionObj} />
+        <Route exact path="/localobj" component={LocalObj} />
       </div>
     </Router>
   );

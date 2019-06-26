@@ -80,9 +80,15 @@ class NavbarCon extends React.Component {
           </Link>
         </NavItem>
         <NavItem className="center-align">
-          <Link to='/sessionobj'>
+          <Link to="/sessionobj">
             <i class="material-icons left">filter_list</i>
             Session OBJ
+          </Link>
+        </NavItem>
+        <NavItem className="center-align">
+          <Link to="/localobj">
+            <i class="material-icons left">filter_list</i>
+            Local OBJ
           </Link>
         </NavItem>
       </Navbar>

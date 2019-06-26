@@ -6,11 +6,9 @@ import "materialize-css/dist/css/materialize.css";
 import logo from "../img/favicon.png";
 import {
   Navbar,
-  Divider,
   SideNav,
   Button,
   SideNavItem,
-  Dropdown,
   NavItem
 } from "react-materialize";
 import "./Navbar.css";
@@ -24,12 +22,12 @@ class NavbarCon extends React.Component {
             <SideNav
               className="sidenav-container"
               trigger={
-                <a href="/">
-                  <img src={logo} alt="" className="circle nav-img" />
+                <Link to="/">
+                  <img src={logo} alt="asdf" className="circle nav-img" />
                   <label className="hide-on-large-only name right nav-profile">
                     Profile
                   </label>
-                </a>
+                </Link>
               }
               options={{ closeOnClick: true }}
             >
@@ -55,7 +53,7 @@ class NavbarCon extends React.Component {
                 Sat Jun 22, 2019
               </SideNavItem>
               <SideNavItem subheader className="center-align">
-                <Button waves>edit profile</Button>
+                <Button teal>edit profile</Button>
               </SideNavItem>
             </SideNav>
           </div>
@@ -81,20 +79,12 @@ class NavbarCon extends React.Component {
             Local Storage
           </Link>
         </NavItem>
-        <Dropdown
-          trigger={
-            <a href="/">
-              <i class="material-icons left">settings</i>
-              Settings
-              <i class="material-icons right">arrow_drop_down</i>
-            </a>
-          }
-        >
-          <a href="/">one</a>
-          <a href="/">two</a>
-          <Divider />
-          <a href="/">three</a>
-        </Dropdown>
+        <NavItem className="center-align">
+          <Link to='/sessionobj'>
+            <i class="material-icons left">filter_list</i>
+            Session OBJ
+          </Link>
+        </NavItem>
       </Navbar>
     );
   }

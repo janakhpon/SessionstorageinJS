@@ -7,6 +7,12 @@ import { Collapsible, CollapsibleItem, Button } from "react-materialize";
 import "./Createtask.css";
 
 class Createtask extends React.Component {
+  constructor() {
+    super();
+    this.state = { name: "", address: "", dname: "", daddress: "", yes: false };
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+  }
   componentDidMount() {
     const options = {
       inDuration: 250,
@@ -17,7 +23,55 @@ class Createtask extends React.Component {
       endingTop: "10%"
     };
     M.Modal.init(this.Modal, options);
+    var dataname = sessionStorage.getItem("name");
+    var dataddress = sessionStorage.getItem("address");
+
+    if (
+      dataname !== null &&
+      dataname !== "" &&
+      dataddress !== null &&
+      dataddress !== ""
+    ) {
+      this.setState({
+        dname: dataname,
+        daddress: dataddress,
+        yes: true
+      });
+    }
   }
+
+  onChange(e) {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  }
+
+  onSubmit(e) {
+    e.preventDefault();
+
+    const vname = this.state.name;
+    const vaddress = this.state.address;
+
+    // Save data to sessionStorage
+    sessionStorage.setItem("name", vname);
+    sessionStorage.setItem("address", vaddress);
+
+    this.setState({
+      name: "",
+      address: ""
+    });
+  }
+
+  onDelete = e => {
+    e.preventDefault();
+    sessionStorage.removeItem("name");
+    sessionStorage.removeItem("address");
+  };
+
+  onClear = e => {
+    e.preventDefault();
+    sessionStorage.clear();
+  };
 
   render() {
     return (
@@ -25,22 +79,30 @@ class Createtask extends React.Component {
         <div className="container">
           <div className="row">
             <div className="col s12 m12 l12">
-              <Collapsible className="collapsible" popout>
-                <CollapsibleItem
-                  className="teal lighten-2 collapsible-item"
-                  header="Better safe than sorry. That's my motto."
-                  icon="filter_drama"
-                  style={{ background: "black" }}
-                >
-                  Better safe than sorry. That's my motto.
-                  <div className="section" />
-                  <hr />
-                  <div className="row center-align">
-                    <Button waves>update</Button>
-                    <Button waves>completed</Button>
-                  </div>
-                </CollapsibleItem>
-              </Collapsible>
+              {this.state.yes ? (
+                <Collapsible className="collapsible" popout>
+                  <CollapsibleItem
+                    className="teal lighten-2 collapsible-item"
+                    header={this.state.dname}
+                    icon="filter_drama"
+                    style={{ background: "black" }}
+                  >
+                    {this.state.daddress}
+                    <div className="section" />
+                    <hr />
+                    <div className="row center-align">
+                      <Button waves onClick={this.onDelete}>
+                        delete
+                      </Button>
+                      <Button waves onClick={this.onClear}>
+                        clear
+                      </Button>
+                    </div>
+                  </CollapsibleItem>
+                </Collapsible>
+              ) : (
+                <p>sorry no data in sessionStorage</p>
+              )}
             </div>
           </div>
         </div>
@@ -63,6 +125,8 @@ class Createtask extends React.Component {
                       type="text"
                       name="name"
                       data-length="10"
+                      value={this.state.name}
+                      onChange={this.onChange}
                     />
                     <label for="input_text">USER NAME</label>
                   </div>
@@ -75,6 +139,8 @@ class Createtask extends React.Component {
                       name="address"
                       className="materialize-textarea"
                       data-length="120"
+                      value={this.state.address}
+                      onChange={this.onChange}
                     />
                     <label for="icon_prefix2">ADDRESS</label>
                   </div>
@@ -85,13 +151,15 @@ class Createtask extends React.Component {
           <div className="modal-footer black-foot">
             <button
               type="submit"
-              className="waves-effect waves-green btn-flat"
+              onClick={this.onSubmit}
+              className="waves-effect waves-blue blue btn-flat text-white"
             >
-              <i className="material-icons left">close</i>close
+              <i className="material-icons left">play_for_work</i>
+              save
             </button>
             <a
               href="#!"
-              className="modal-close waves-effect waves-green btn-flat"
+              className="modal-close waves-effect waves-light red btn-flat  text-white"
             >
               {" "}
               <i className="material-icons left">close</i>close

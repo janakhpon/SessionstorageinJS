@@ -4,9 +4,9 @@ import M from "materialize-css";
 import "materialize-css/dist/js/materialize.js";
 import "materialize-css/dist/css/materialize.css";
 import { Collapsible, CollapsibleItem, Button } from "react-materialize";
-import "./Createtask.css";
+import "./Sessiontask.css";
 
-class Createtask extends React.Component {
+class Localtask extends React.Component {
   constructor() {
     super();
     this.state = { name: "", address: "", dname: "", daddress: "", yes: false };
@@ -23,8 +23,8 @@ class Createtask extends React.Component {
       endingTop: "10%"
     };
     M.Modal.init(this.Modal, options);
-    var dataname = sessionStorage.getItem("name");
-    var dataddress = sessionStorage.getItem("address");
+    var dataname = localStorage.getItem("name");
+    var dataddress = localStorage.getItem("address");
 
     if (
       dataname !== null &&
@@ -52,9 +52,9 @@ class Createtask extends React.Component {
     const vname = this.state.name;
     const vaddress = this.state.address;
 
-    // Save data to sessionStorage
-    sessionStorage.setItem("name", vname);
-    sessionStorage.setItem("address", vaddress);
+    // Save data to localStorage
+    localStorage.setItem("name", vname);
+    localStorage.setItem("address", vaddress);
 
     this.setState({
       name: "",
@@ -64,13 +64,13 @@ class Createtask extends React.Component {
 
   onDelete = e => {
     e.preventDefault();
-    sessionStorage.removeItem("name");
-    sessionStorage.removeItem("address");
+    localStorage.removeItem("name");
+    localStorage.removeItem("address");
   };
 
   onClear = e => {
     e.preventDefault();
-    sessionStorage.clear();
+    localStorage.clear();
   };
 
   render() {
@@ -101,7 +101,7 @@ class Createtask extends React.Component {
                   </CollapsibleItem>
                 </Collapsible>
               ) : (
-                <p>sorry no data in sessionStorage</p>
+                <p>sorry no data in localStorage</p>
               )}
             </div>
           </div>
@@ -182,4 +182,4 @@ class Createtask extends React.Component {
   }
 }
 
-export default Createtask;
+export default Localtask;

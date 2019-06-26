@@ -1,12 +1,16 @@
-.App {
-  text-align: center;
+body,
+html {
+  animation: one 40s ease-in-out infinite alternate;
+  background-repeat: no-repeat;
+  height: 99.9999vh;
+  width: 99.9999vw;
 }
 
 .spin-button {
-  animation: btn-spin infinite 20s linear;
+  animation: btn-spin infinite 30s linear;
 }
 
-.edit-icon{
+.edit-icon {
   color: #000 !important;
 }
 
@@ -19,18 +23,6 @@
     transform: rotate(360deg);
   }
 }
-
-
-
-body,
-html {
-  animation: one 20s ease-in-out infinite alternate;
-  background-repeat: no-repeat;
-  height: 99.9999vh;
-  width: 99.9999vw;
-}
-
-
 
 
 @keyframes one {
